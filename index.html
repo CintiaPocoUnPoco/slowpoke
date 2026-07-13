@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f7c9d8" />
   <title>呆呆獸收集器</title>
-  <!-- build: location-fix-20260713-2 -->
+  <!-- build: badges-editable-location-20260713-1 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles-20260713-badges-edit.css?v=20260713-1" />
 </head>
 <body>
   <main class="app-shell">
@@ -41,6 +41,42 @@
         發現野生呆呆獸
       </button>
       <button id="shareButton" class="secondary-button">分享今天戰績</button>
+    </section>
+
+    <section class="badge-section">
+      <div class="section-heading badge-heading">
+        <div>
+          <p class="eyebrow">BADGES</p>
+          <h2>發呆徽章</h2>
+        </div>
+        <p id="badgeCount">0 / 4</p>
+      </div>
+
+      <div class="badges">
+        <article class="badge" data-goal="1">
+          <div class="badge-icon">🌸</div>
+          <b>初次相遇</b>
+          <small>收集 1 隻</small>
+        </article>
+
+        <article class="badge" data-goal="3">
+          <div class="badge-icon">🫧</div>
+          <b>發呆小隊</b>
+          <small>收集 3 隻</small>
+        </article>
+
+        <article class="badge" data-goal="5">
+          <div class="badge-icon">👑</div>
+          <b>呆呆獸里長</b>
+          <small>收集 5 隻</small>
+        </article>
+
+        <article class="badge" data-goal="10">
+          <div class="badge-icon">✨</div>
+          <b>發呆大師</b>
+          <small>收集 10 隻</small>
+        </article>
+      </div>
     </section>
 
     <section class="section-heading">
@@ -102,7 +138,27 @@
       <button type="button" class="close-button" data-close="detailDialog" aria-label="關閉">×</button>
       <img id="detailImage" alt="" />
       <p id="detailNumber" class="eyebrow"></p>
-      <h2 id="detailLocation"></h2>
+      <h2 class="detail-heading">這次的相遇</h2>
+
+      <label class="detail-location-editor">
+        地點（可以修改）
+        <input
+          id="detailLocationInput"
+          type="text"
+          maxlength="100"
+          placeholder="例如：高松車站前"
+        />
+      </label>
+
+      <button
+        id="saveLocationButton"
+        class="secondary-button detail-save-button"
+        type="button"
+      >
+        儲存地點修改
+      </button>
+      <p id="detailEditStatus" class="status-text"></p>
+
       <p id="detailMessage" class="detail-message"></p>
       <p id="detailDate" class="detail-date"></p>
       <button id="deleteButton" class="danger-button">刪除這筆紀錄</button>
@@ -149,6 +205,6 @@
   </template>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./app-20260713-location-fix.js?v=20260713-2"></script>
+  <script src="./app-20260713-badges-edit.js?v=20260713-1"></script>
 </body>
 </html>

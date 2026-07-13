@@ -1,0 +1,32 @@
+呆呆獸網站｜地點可修改＋徽章回歸版
+
+請把這三個檔案一起上傳到 GitHub：
+1. index.html
+2. styles-20260713-badges-edit.css
+3. app-20260713-badges-edit.js
+
+步驟：
+1. 打開 GitHub 的 slowpoke repository。
+2. 按 Add file → Upload files。
+3. 把上面三個檔案一起拖進去。
+4. 按 Commit changes。
+5. 等 GitHub Pages 約 1～2 分鐘。
+6. 關掉 Safari 舊分頁，再重新開啟網站。
+
+舊檔案不需要刪除：
+- styles.css
+- app.js
+- app-20260713-location-fix.js
+
+新版 index.html 已不會讀取它們。
+
+新版功能：
+- 點開圖鑑卡片後，可直接修改地點。
+- 按「儲存地點修改」後，首頁卡片會立刻更新。
+- 首頁恢復四個收集徽章。
+- 徽章依累積數量自動解鎖：1、3、5、10 隻。
+- 原本已收集的紀錄會直接計入徽章，不必重新收集。
+
+若你目前使用的是本機儲存，不用處理 SQL。
+若已設定 Supabase 雲端同步，請另外執行：
+supabase-enable-location-update.sql
