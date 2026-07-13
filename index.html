@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f7c9d8" />
   <title>呆呆獸收集器</title>
-  <!-- build: edit-before-save-20260713-1 -->
+  <!-- build: edit-location-message-20260713-1 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles-20260713-edit-before-save.css?v=20260713-1" />
+  <link rel="stylesheet" href="./styles-20260713-edit-record.css?v=20260713-1" />
 </head>
 <body>
   <main class="app-shell">
@@ -159,16 +159,25 @@
         />
       </label>
 
+      <label class="detail-message-editor">
+        今天想說的一句話（可以修改）
+        <textarea
+          id="detailMessageInput"
+          maxlength="120"
+          rows="4"
+          placeholder="例如：牠比我們更會等車。"
+        ></textarea>
+      </label>
+
       <button
-        id="saveLocationButton"
+        id="saveRecordButton"
         class="secondary-button detail-save-button"
         type="button"
       >
-        儲存地點修改
+        儲存修改
       </button>
       <p id="detailEditStatus" class="status-text"></p>
 
-      <p id="detailMessage" class="detail-message"></p>
       <p id="detailDate" class="detail-date"></p>
       <button id="deleteButton" class="danger-button">刪除這筆紀錄</button>
     </article>
@@ -214,6 +223,6 @@
   </template>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./app-20260713-edit-before-save.js?v=20260713-1"></script>
+  <script src="./app-20260713-edit-record.js?v=20260713-1"></script>
 </body>
 </html>
