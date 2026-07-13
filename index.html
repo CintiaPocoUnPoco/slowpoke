@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f7c9d8" />
   <title>呆呆獸收集器</title>
-  <!-- build: badges-editable-location-20260713-1 -->
+  <!-- build: edit-before-save-20260713-1 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles-20260713-badges-edit.css?v=20260713-1" />
+  <link rel="stylesheet" href="./styles-20260713-edit-before-save.css?v=20260713-1" />
 </head>
 <body>
   <main class="app-shell">
@@ -113,9 +113,18 @@
         </span>
       </label>
 
-      <label>
-        地點
-        <input id="locationInput" type="text" maxlength="60" placeholder="例如：高松車站" />
+      <label class="location-label">
+        地點（儲存前可直接修改）
+        <input
+          id="locationInput"
+          type="text"
+          maxlength="100"
+          placeholder="例如：高松車站前的呆呆獸"
+          autocomplete="off"
+        />
+        <small id="locationHint" class="field-hint">
+          定位會先填入建議地點；按下收服前，可改成任何你想保存的文字。
+        </small>
       </label>
 
       <label>
@@ -124,7 +133,7 @@
       </label>
 
       <div class="form-row">
-        <button type="button" id="useLocationButton" class="ghost-button">取得目前位置</button>
+        <button type="button" id="useLocationButton" class="ghost-button">自動填入目前地點</button>
         <span id="locationStatus"></span>
       </div>
 
@@ -205,6 +214,6 @@
   </template>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./app-20260713-badges-edit.js?v=20260713-1"></script>
+  <script src="./app-20260713-edit-before-save.js?v=20260713-1"></script>
 </body>
 </html>
