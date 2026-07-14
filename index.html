@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f7c9d8" />
   <title>呆呆獸收集器</title>
-  <!-- build: location-privacy-20260714-1 -->
+  <!-- build: local-first-backup-20260714-1 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles-20260714-location-privacy.css?v=20260714-1" />
+  <link rel="stylesheet" href="./styles-20260714-local-first-backup.css?v=20260714-1" />
 </head>
 <body>
   <main class="app-shell">
@@ -22,73 +22,59 @@
           <p class="eyebrow">SLOWPOKE HUNT</p>
           <h1>呆呆獸收集器</h1>
         </div>
-        <button id="settingsButton" class="icon-button" aria-label="設定">⚙️</button>
+        <button id="settingsButton" class="icon-button" aria-label="資料保存說明">⚙️</button>
       </div>
 
       <div class="today-card">
         <p>今天的發呆進度</p>
         <strong><span id="todayCount">0</span> 隻</strong>
-        <div class="lazy-progress" aria-hidden="true">
-          <span id="progressBar"></span>
-        </div>
+        <div class="lazy-progress" aria-hidden="true"><span id="progressBar"></span></div>
         <small id="todayMessage">第一隻呆呆獸正在等你。</small>
       </div>
     </header>
 
-    <section class="actions">
-      <button id="openFormButton" class="primary-button">
-        <span>＋</span>
-        發現野生呆呆獸
+    <section class="collector-card" aria-labelledby="collectorTitle">
+      <div class="collector-avatar" aria-hidden="true">◉‿◉</div>
+      <div class="collector-copy">
+        <p class="eyebrow" id="collectorTitle">POKÉMON COLLECTOR</p>
+        <h2 id="collectorName">正在替你想一個名字…</h2>
+        <p id="collectorStatus">本機收藏準備中</p>
+        <div id="cloudMeter" class="cloud-meter" hidden>
+          <div><span>雲端收藏</span><b id="cloudCount">0 / 18</b></div>
+          <div class="cloud-meter-bar"><span id="cloudMeterBar"></span></div>
+        </div>
+      </div>
+      <button id="collectorActionButton" class="collector-action-button" type="button">
+        登入備份與改名稱
       </button>
+    </section>
+
+    <div id="cloudNotice" class="cloud-notice" hidden></div>
+
+    <section class="actions">
+      <button id="openFormButton" class="primary-button"><span>＋</span>發現野生呆呆獸</button>
       <button id="shareButton" class="secondary-button">分享今天戰績</button>
     </section>
 
     <section class="badge-section">
       <div class="section-heading badge-heading">
-        <div>
-          <p class="eyebrow">BADGES</p>
-          <h2>發呆徽章</h2>
-        </div>
+        <div><p class="eyebrow">BADGES</p><h2>發呆徽章</h2></div>
         <p id="badgeCount">0 / 4</p>
       </div>
-
       <div class="badges">
-        <article class="badge" data-goal="1">
-          <div class="badge-icon">🌸</div>
-          <b>初次相遇</b>
-          <small>收集 1 隻</small>
-        </article>
-
-        <article class="badge" data-goal="3">
-          <div class="badge-icon">🫧</div>
-          <b>發呆小隊</b>
-          <small>收集 3 隻</small>
-        </article>
-
-        <article class="badge" data-goal="5">
-          <div class="badge-icon">👑</div>
-          <b>呆呆獸里長</b>
-          <small>收集 5 隻</small>
-        </article>
-
-        <article class="badge" data-goal="10">
-          <div class="badge-icon">✨</div>
-          <b>發呆大師</b>
-          <small>收集 10 隻</small>
-        </article>
+        <article class="badge" data-goal="1"><div class="badge-icon">🌸</div><b>初次相遇</b><small>收集 1 隻</small></article>
+        <article class="badge" data-goal="3"><div class="badge-icon">🫧</div><b>發呆小隊</b><small>收集 3 隻</small></article>
+        <article class="badge" data-goal="5"><div class="badge-icon">👑</div><b>呆呆獸里長</b><small>收集 5 隻</small></article>
+        <article class="badge" data-goal="10"><div class="badge-icon">✨</div><b>發呆大師</b><small>收集 10 隻</small></article>
       </div>
     </section>
 
     <section class="section-heading">
-      <div>
-        <p class="eyebrow">COLLECTION</p>
-        <h2>我的呆呆獸圖鑑</h2>
-      </div>
+      <div><p class="eyebrow">COLLECTION</p><h2>我的呆呆獸圖鑑</h2></div>
       <p id="totalCount">總共 0 隻</p>
     </section>
 
     <section id="gallery" class="gallery"></section>
-
     <section id="emptyState" class="empty-state">
       <div class="empty-face">◉‿◉</div>
       <h3>圖鑑還在發呆</h3>
@@ -99,36 +85,24 @@
   <dialog id="recordDialog" class="modal">
     <form id="recordForm" method="dialog" class="modal-card">
       <button type="button" class="close-button" data-close="recordDialog" aria-label="關閉">×</button>
-
       <p class="eyebrow">NEW SLOWPOKE</p>
       <h2>今天找到第 <span id="nextNumber">1</span> 隻！</h2>
-      <p class="modal-subtitle">拍張照，再留一句今天的呆話。</p>
+      <p class="modal-subtitle">原始照片不會保存；網站只留下快速縮圖與手機觀看的大圖。</p>
 
       <label class="photo-picker">
         <input id="photoInput" type="file" accept="image/*" capture="environment" />
         <img id="photoPreview" alt="照片預覽" hidden />
-        <span id="photoPlaceholder">
-          <b>📷</b>
-          拍照或選擇照片
-        </span>
+        <span id="photoPlaceholder"><b>📷</b>拍照或選擇照片</span>
       </label>
+      <p id="photoSizeStatus" class="image-size-status"></p>
 
       <label class="location-label">
         地點（儲存前可直接修改）
-        <input
-          id="locationInput"
-          type="text"
-          maxlength="100"
-          placeholder="例如：高松車站前的呆呆獸"
-          autocomplete="off"
-        />
-        <small id="locationHint" class="field-hint">
-          定位會先填入建議地點；按下收服前，可改成任何你想保存的文字。
-        </small>
+        <input id="locationInput" type="text" maxlength="100" placeholder="例如：高松車站前的呆呆獸" autocomplete="off" />
+        <small id="locationHint" class="field-hint">定位會先填入建議地點；按下收服前，可改成任何你想保存的文字。</small>
       </label>
 
-      <label>
-        今天想說的一句話
+      <label>今天想說的一句話
         <textarea id="messageInput" maxlength="120" rows="3" placeholder="例如：牠比我們更會等車。"></textarea>
       </label>
 
@@ -136,7 +110,6 @@
         <button type="button" id="useLocationButton" class="ghost-button">用目前位置幫我填地點（選填）</button>
         <span id="locationStatus" role="status" aria-live="polite"></span>
       </div>
-
       <details class="location-privacy">
         <summary>定位如何使用？</summary>
         <ul>
@@ -148,91 +121,103 @@
       </details>
 
       <button id="saveButton" class="primary-button" type="submit">收服這隻呆呆獸</button>
-      <p id="formStatus" class="status-text"></p>
+      <p id="formStatus" class="status-text" role="status" aria-live="polite"></p>
     </form>
   </dialog>
 
   <dialog id="detailDialog" class="modal">
     <article class="modal-card detail-card">
       <button type="button" class="close-button" data-close="detailDialog" aria-label="關閉">×</button>
-      <img id="detailImage" alt="" />
+      <div class="detail-image-frame">
+        <img id="detailImage" alt="" />
+        <div id="detailImageLoading" class="detail-image-loading" hidden>正在載入大圖…</div>
+      </div>
       <p id="detailNumber" class="eyebrow"></p>
       <h2 class="detail-heading">這次的相遇</h2>
-
-      <label class="detail-location-editor">
-        地點（可以修改）
-        <input
-          id="detailLocationInput"
-          type="text"
-          maxlength="100"
-          placeholder="例如：高松車站前"
-        />
+      <label class="detail-location-editor">地點（可以修改）
+        <input id="detailLocationInput" type="text" maxlength="100" placeholder="例如：高松車站前" />
       </label>
-
-      <label class="detail-message-editor">
-        今天想說的一句話（可以修改）
-        <textarea
-          id="detailMessageInput"
-          maxlength="120"
-          rows="4"
-          placeholder="例如：牠比我們更會等車。"
-        ></textarea>
+      <label class="detail-message-editor">今天想說的一句話（可以修改）
+        <textarea id="detailMessageInput" maxlength="120" rows="4" placeholder="例如：牠比我們更會等車。"></textarea>
       </label>
-
-      <button
-        id="saveRecordButton"
-        class="secondary-button detail-save-button"
-        type="button"
-      >
-        儲存修改
-      </button>
+      <button id="saveRecordButton" class="secondary-button detail-save-button" type="button">儲存修改</button>
       <p id="detailEditStatus" class="status-text"></p>
-
       <p id="detailDate" class="detail-date"></p>
       <button id="deleteButton" class="danger-button">刪除這筆紀錄</button>
     </article>
   </dialog>
 
-  <dialog id="settingsDialog" class="modal">
-    <form id="settingsForm" method="dialog" class="modal-card">
-      <button type="button" class="close-button" data-close="settingsDialog" aria-label="關閉">×</button>
-      <p class="eyebrow">SETTINGS</p>
-      <h2>雲端同步設定</h2>
-      <p class="modal-subtitle">
-        留白時會使用手機本機儲存。填入 Supabase 資料後，可跨裝置同步。
-      </p>
+  <dialog id="loginDialog" class="modal">
+    <article class="modal-card auth-card">
+      <button type="button" class="close-button" data-close="loginDialog" aria-label="關閉">×</button>
+      <p class="eyebrow">CLOUD BACKUP</p>
+      <h2 id="loginDialogTitle">備份目前的圖鑑</h2>
+      <p id="loginDialogMessage" class="modal-subtitle">登入後，會把這台手機上的收藏備份到雲端；每人最多 18 筆。</p>
+      <div id="backupAvailabilityMessage" class="backup-availability"></div>
+      <div class="auth-buttons">
+        <button id="backupGoogleButton" class="oauth-button google-button" type="button"><span>G</span>使用 Google 登入並備份</button>
+        <button id="backupAppleButton" class="oauth-button apple-button" type="button"><span>●</span>使用 Apple 登入並備份</button>
+      </div>
+      <button id="continueLocalButton" class="ghost-button full-width" type="button">先留在這台手機</button>
+      <details class="recover-account">
+        <summary>已經備份過？找回原本的圖鑑</summary>
+        <p>找回會顯示雲端中的收藏；這台手機尚未備份的資料不會自動合併。</p>
+        <div class="recover-buttons">
+          <button id="recoverGoogleButton" class="text-button" type="button">用 Google 找回</button>
+          <button id="recoverAppleButton" class="text-button" type="button">用 Apple 找回</button>
+        </div>
+      </details>
+      <p id="loginStatus" class="status-text" role="status" aria-live="polite"></p>
+    </article>
+  </dialog>
 
-      <label>
-        Supabase URL
-        <input id="supabaseUrlInput" type="url" placeholder="https://xxxx.supabase.co" />
+  <dialog id="syncDialog" class="modal" data-static="true">
+    <article class="modal-card sync-card">
+      <p class="eyebrow">BACKING UP</p>
+      <h2>正在備份收藏</h2>
+      <p id="syncMessage">準備上傳縮圖與大圖…</p>
+      <div class="sync-progress"><span id="syncProgressBar"></span></div>
+      <p id="syncCount">0 / 0</p>
+    </article>
+  </dialog>
+
+  <dialog id="nameDialog" class="modal">
+    <form id="nameForm" method="dialog" class="modal-card">
+      <button type="button" class="close-button" data-close="nameDialog" aria-label="關閉">×</button>
+      <p class="eyebrow">COLLECTOR NAME</p>
+      <h2>設定專屬收藏家名稱</h2>
+      <p class="modal-subtitle">登入備份後才會解鎖；不必使用 Google 或 Apple 的真實姓名。</p>
+      <label>寶可夢收藏家名稱
+        <input id="collectorNameInput" type="text" maxlength="36" placeholder="例如：瑀茉的慢慢探險隊" autocomplete="off" />
       </label>
-
-      <label>
-        Supabase anon key
-        <textarea id="supabaseKeyInput" rows="4" placeholder="eyJ..."></textarea>
-      </label>
-
-      <button class="primary-button" type="submit">儲存設定</button>
-      <button id="clearCloudButton" class="ghost-button full-width" type="button">清除雲端設定，改用本機</button>
-      <p id="settingsStatus" class="status-text"></p>
+      <button id="saveCollectorNameButton" class="primary-button" type="submit">儲存收藏家名稱</button>
+      <p id="nameStatus" class="status-text"></p>
     </form>
+  </dialog>
+
+  <dialog id="settingsDialog" class="modal">
+    <article class="modal-card">
+      <button type="button" class="close-button" data-close="settingsDialog" aria-label="關閉">×</button>
+      <p class="eyebrow">STORAGE</p>
+      <h2>資料保存方式</h2>
+      <div class="storage-explainer">
+        <article><b>未登入</b><p>收藏只存在這台手機，不需要帳號；清除網站資料或換手機後無法找回。</p></article>
+        <article><b>登入備份</b><p>最多備份 18 筆。收藏牆只載入小縮圖，點開時才載入 1600 px 大圖。</p></article>
+        <article><b>照片隱私</b><p>不保存手機原始照片，也不保存精確經緯度。</p></article>
+      </div>
+      <p id="settingsModeStatus" class="status-text"></p>
+    </article>
   </dialog>
 
   <template id="cardTemplate">
     <button class="record-card">
-      <div class="image-wrap">
-        <img alt="" />
-        <span class="record-number"></span>
-      </div>
-      <div class="card-copy">
-        <h3></h3>
-        <p></p>
-        <small></small>
-      </div>
+      <div class="image-wrap"><img alt="" loading="lazy" decoding="async" /><span class="record-number"></span></div>
+      <div class="card-copy"><h3></h3><p></p><small></small></div>
     </button>
   </template>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./app-20260714-location-privacy.js?v=20260714-1"></script>
+  <script src="./supabase-config.js?v=20260714-1"></script>
+  <script src="./app-20260714-local-first-backup.js?v=20260714-1"></script>
 </body>
 </html>
