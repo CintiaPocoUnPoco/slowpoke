@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f7c9d8" />
   <title>呆呆獸收集器</title>
-  <!-- build: edit-location-message-20260713-1 -->
+  <!-- build: location-privacy-20260714-1 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles-20260713-edit-record.css?v=20260713-1" />
+  <link rel="stylesheet" href="./styles-20260714-location-privacy.css?v=20260714-1" />
 </head>
 <body>
   <main class="app-shell">
@@ -132,10 +132,20 @@
         <textarea id="messageInput" maxlength="120" rows="3" placeholder="例如：牠比我們更會等車。"></textarea>
       </label>
 
-      <div class="form-row">
-        <button type="button" id="useLocationButton" class="ghost-button">自動填入目前地點</button>
-        <span id="locationStatus"></span>
+      <div class="form-row location-action-row">
+        <button type="button" id="useLocationButton" class="ghost-button">用目前位置幫我填地點（選填）</button>
+        <span id="locationStatus" role="status" aria-live="polite"></span>
       </div>
+
+      <details class="location-privacy">
+        <summary>定位如何使用？</summary>
+        <ul>
+          <li>只有按下定位按鈕時才會讀取位置</li>
+          <li>用來將座標轉成附近地名</li>
+          <li>不會在背景持續追蹤</li>
+          <li>只保存你最後確認的地點文字</li>
+        </ul>
+      </details>
 
       <button id="saveButton" class="primary-button" type="submit">收服這隻呆呆獸</button>
       <p id="formStatus" class="status-text"></p>
@@ -223,6 +233,6 @@
   </template>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./app-20260713-edit-record.js?v=20260713-1"></script>
+  <script src="./app-20260714-location-privacy.js?v=20260714-1"></script>
 </body>
 </html>
